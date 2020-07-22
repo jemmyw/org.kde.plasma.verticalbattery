@@ -40,6 +40,7 @@ ConfigPage {
 		}
 
 		ConfigSpinBox {
+			before: i18n('Battery bars')
 			configKey: 'batteryBars'
 			value: config.batteryBars
 			minimumValue: 3

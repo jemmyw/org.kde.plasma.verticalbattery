@@ -46,6 +46,9 @@
     <entry name="fontSize" type="int">
       <default>16</default>
     </entry>
+    <entry name="batteryBars" type="int">
+      <default>8</default>
+    </entry>
   </group>
 
 </kcfg>

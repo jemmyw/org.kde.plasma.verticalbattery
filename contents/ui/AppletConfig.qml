@@ -21,4 +21,6 @@ QtObject {
 
 	readonly property int defaultIconHeight: 15
 	readonly property int iconHeight: plasmoid.configuration.iconHeight || defaultIconHeight
+
+	readonly property int batteryBars: 8
 }

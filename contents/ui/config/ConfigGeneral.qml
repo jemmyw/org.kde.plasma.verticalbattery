@@ -16,12 +16,7 @@ ConfigPage {
 	AppletConfig { id: config }
 
 	ConfigSection {
-		label: i18n("Mac Inline Battery")
-
-		ConfigCheckBox {
-			text: i18n("Enabled")
-			configKey: 'showBatteryIcon'
-		}
+		label: i18n("Vertical Battery")
 
 		RowLayout {
 			ConfigSpinBox {
@@ -42,6 +37,13 @@ ConfigPage {
 				minimumValue: 0
 				maximumValue: 100
 			}
+		}
+
+		ConfigSpinBox {
+			configKey: 'batteryBars'
+			value: config.batteryBars
+			minimumValue: 3
+			maximumValue: 20
 		}
 
 		ConfigColor {

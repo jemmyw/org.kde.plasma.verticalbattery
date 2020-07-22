@@ -2,6 +2,8 @@
 
 Vertical battery applet for plasma desktop.
 
+![Screenshot](doc/screenshot.png)
+
 ## Install
 ```
 kpackagetool5 -t Plasma/Applet --install org.kde.plasma.verticalbattery

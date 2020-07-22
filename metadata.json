@@ -1,0 +1,17 @@
+{
+  "KPlugin": {
+    "Category": "System Information",
+    "Dependencies": [],
+    "Description": "A vertical battery applet",
+    "Name": "Vertical Battery",
+    "EnabledByDefault": true,
+    "Id": "org.kde.plasma.verticalbattery",
+    "License": "GPL-2.0+",
+    "ServiceTypes": ["Plasma/Applet"],
+    "Version": "1.5"
+  },
+  "X-Plasma-API": "declarativeappletscript",
+  "X-Plasma-MainScript": "ui/main.qml",
+  "X-Plasma-Provides": [ ],
+  "X-Plasma-StandAloneApp": true
+}

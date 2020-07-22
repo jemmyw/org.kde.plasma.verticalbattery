@@ -18,33 +18,27 @@ ConfigPage {
 	ConfigSection {
 		label: i18n("Vertical Battery")
 
-		RowLayout {
-			ConfigSpinBox {
-				before: i18n("Dimensions")
-				suffix: 'px'
-				configKey: 'iconWidth'
-				value: config.iconWidth
-				minimumValue: 0
-				maximumValue: 100
-			}
-			Label {
-				text: "x"
-			}
-			ConfigSpinBox {
-				suffix: 'px'
-				configKey: 'iconHeight'
-				value: config.iconHeight
-				minimumValue: 0
-				maximumValue: 100
-			}
-		}
-
 		ConfigSpinBox {
 			before: i18n('Battery bars')
 			configKey: 'batteryBars'
 			value: config.batteryBars
 			minimumValue: 3
 			maximumValue: 20
+		}
+
+		ConfigSpinBox {
+			before: i18n("Margin")
+			suffix: "px"
+			configKey: "margin"
+			value: config.margin
+			minimumValue: 0
+			maximumValue: 100
+		}
+
+		ConfigColor {
+			label: i18n("Background")
+			configKey: 'backgroundColor'
+			defaultColor: config.defaultBackgroundColor
 		}
 
 		ConfigColor {
@@ -83,26 +77,6 @@ ConfigPage {
 			configKey: 'showPercentage'
 		}
 
-		Label {
-			text: i18n("Position relative to battery icon")
-		}
-
-		RowLayout {
-			RadioButton {
-				text: i18n("Left")
-				exclusiveGroup: percentageAlign
-				checked: plasmoid.configuration.alignLeft
-				enabled: plasmoid.configuration.showPercentage
-				onClicked: plasmoid.configuration.alignLeft = true
-			}
-			RadioButton {
-				text: i18n("Right")
-				exclusiveGroup: percentageAlign
-				checked: !plasmoid.configuration.alignLeft
-				enabled: plasmoid.configuration.showPercentage
-				onClicked: plasmoid.configuration.alignLeft = false
-			}
-		}
 		ConfigSpinBox {
 			before: i18n("Padding")
 			suffix: 'px'
@@ -124,6 +98,12 @@ ConfigPage {
 			value: config.fontSize
 			minimumValue: 0
 			maximumValue: 100
+		}
+
+		ConfigColor {
+			label: i18n("Text Color")
+			configKey: 'textColor'
+			defaultColor: config.defaultTextColor
 		}
 	}
 }

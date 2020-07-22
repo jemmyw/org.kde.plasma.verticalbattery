@@ -1,6 +1,9 @@
 import QtQuick 2.0
 
 QtObject {
+	readonly property color defaultBackgroundColor: theme.backgroundColor
+	readonly property color backgroundColor: plasmoid.configuration.backgroundColor || defaultBackgroundColor
+
 	readonly property color defaultNormalColor: theme.textColor
 	readonly property color normalColor: plasmoid.configuration.normalColor || defaultNormalColor
 
@@ -13,14 +16,14 @@ QtObject {
 	readonly property int defaultFontSize: 16
 	readonly property int fontSize: plasmoid.configuration.fontSize || defaultFontSize
 
+	readonly property color defaultTextColor: theme.textColor
+	readonly property color textColor: plasmoid.configuration.textColor || defaultTextColor
+
 	readonly property int defaultPadding: 8
 	readonly property int padding: plasmoid.configuration.padding || defaultPadding
 
-	readonly property int defaultIconWidth: 26
-	readonly property int iconWidth: plasmoid.configuration.iconWidth || defaultIconWidth
-
-	readonly property int defaultIconHeight: 15
-	readonly property int iconHeight: plasmoid.configuration.iconHeight || defaultIconHeight
+	readonly property int defaultMargin: 10
+	readonly property int margin: plasmoid.configuration.margin || defaultMargin
 
 	readonly property int batteryBars: plasmoid.configuration.batteryBars
 }

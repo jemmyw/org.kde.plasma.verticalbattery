@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.12
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponent
@@ -12,7 +13,8 @@ Item {
     id: vbatterywidget
 	AppletConfig { id: config }
 
-    Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
 
     property var inhibitions: []
 
@@ -98,40 +100,51 @@ Item {
 
 
 	property color normalColor: theme.textColor
+    property int batteryRadius: 4
 
-    Plasmoid.fullRepresentation: Item {
+    Plasmoid.compactRepresentation: Item {
         Layout.preferredWidth: 10 * units.devicePixelRatio
         Layout.preferredHeight: 256 * units.devicePixelRatio
-        Layout.minimumWidth: 10 * units.devicePixelRatio
+        Layout.minimumWidth: 1 * units.devicePixelRatio
         Layout.maximumWidth: 20 * units.devicePixelRatio
         Layout.minimumHeight: 50 * units.devicePixelRatio
-        width: 10 * units.devicePixelRatio
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+        }
 
         ColumnLayout {
             anchors.fill: parent
+            anchors.leftMargin: config.margin
+            anchors.rightMargin: config.margin
             id: layout
 
             Rectangle {
-                id: container
-                color: "transparent"
-                border.color: config.normalColor
-                radius: 4
+                id: border
+                color: config.backgroundColor
+                radius: batteryRadius
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                ColumnLayout {
+                Rectangle {
+                    id: container
+                    color: "transparent"
+                    border.color: config.normalColor
+                    radius: batteryRadius
                     anchors.fill: parent
-                    anchors.leftMargin: 10
-                    anchors.rightMargin: 10
-                    anchors.topMargin: 10
-                    anchors.bottomMargin: 10
 
-                    Repeater {
-                        model: config.batteryBars
-                        Rectangle {
-                            color: (currentBatteryPercent/100)*config.batteryBars > (config.batteryBars - 1 - index) ? config.normalColor : 'transparent'
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 10
+
+                        Repeater {
+                            model: config.batteryBars
+                            Rectangle {
+                                color: (currentBatteryPercent/100)*config.batteryBars > (config.batteryBars - 1 - index) ? config.normalColor : 'transparent'
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                            }
                         }
                     }
                 }
@@ -151,7 +164,17 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillWidth: true
-                color: currentTextColor
+                color: config.textColor
+            }
+
+            DropShadow {
+                anchors.fill: percentText
+                horizontalOffset: 3
+                verticalOffset: 3
+                radius: 8.0
+                samples: 17
+                color: "#80000000"
+                source: percentText
             }
         }
     }
